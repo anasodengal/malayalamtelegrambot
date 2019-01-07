@@ -54,8 +54,8 @@ def bot_can_delete(func):
         if can_delete(update.effective_chat, bot.id):
             return func(bot, update, *args, **kwargs)
         else:
-            update.effective_message.reply_text("I can't delete messages here! "
-                                                "Make sure I'm admin and can delete other user's messages.")
+            update.effective_message.reply_text("എനിക്ക് ഇപ്പോൾ മെസ്സേജ് ഡിലീറ്റ് ചെയ്യാൻ പറ്റില്ല! "
+                                                "എന്നെ അഡ്മിൻ ആക്കിയാൽ മാത്രമേ എനിക്ക് മറ്റുള്ളവരുടെ മെസ്സേജ് ഡിലീറ്റ് ചെയ്യാൻ കഴിയൂ.")
 
     return delete_rights
 
@@ -78,8 +78,8 @@ def can_promote(func):
         if update.effective_chat.get_member(bot.id).can_promote_members:
             return func(bot, update, *args, **kwargs)
         else:
-            update.effective_message.reply_text("I can't promote/demote people here! "
-                                                "Make sure I'm admin and can appoint new admins.")
+            update.effective_message.reply_text("എനിക്ക് അതിനു കഴിയില്ല! "
+                                                "ആദ്യം എന്നെ അഡ്മിൻ ആക്കുക അതിനു ശേഷം ഒന്നുടെ ശ്രമിക്കു.")
 
     return promote_rights
 
@@ -90,8 +90,9 @@ def can_restrict(func):
         if update.effective_chat.get_member(bot.id).can_restrict_members:
             return func(bot, update, *args, **kwargs)
         else:
-            update.effective_message.reply_text("I can't restrict people here! "
-                                                "Make sure I'm admin and can appoint new admins.")
+            update.effective_message.reply_text("എന്നെ കൊണ്ട് കഴിയുന്നില്ല! "
+                                                "ആദ്യം എന്നെ അഡ്മിൻ ആക്കുക അതിനു ശേഷം ഒന്നുടെ ശ്രമിക്കു.")
+                                               
 
     return promote_rights
 
@@ -102,7 +103,7 @@ def bot_admin(func):
         if is_bot_admin(update.effective_chat, bot.id):
             return func(bot, update, *args, **kwargs)
         else:
-            update.effective_message.reply_text("I'm not admin!")
+            update.effective_message.reply_text("ഞാൻ അഡ്മിൻ അല്ല!")
 
     return is_admin
 
@@ -121,7 +122,7 @@ def user_admin(func):
             update.effective_message.delete()
 
         else:
-            update.effective_message.reply_text("Who dis non-admin telling me what to do?")
+            update.effective_message.reply_text("അഡ്മിൻ അല്ലാത്തവർ പറഞ്ഞാൽ ഞാൻ ചെയ്യില്ല?")
 
     return is_admin
 
